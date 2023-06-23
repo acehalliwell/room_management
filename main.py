@@ -82,7 +82,7 @@ class Check(Resource):
         df = pd.DataFrame({'room_id' : _room_id , 'slot' : _slot, 'booking_date' : _booking_date})
         print(df)
 
-        return df.to_dict(orient='record')
+        return {'data' : df.to_dict(orient='record')}
         
 
 
