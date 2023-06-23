@@ -49,12 +49,18 @@ class Booking(Resource):
 class Check(Resource):
     def get(self):
 
+        args = request.args
+
+        booking_date = args['booking_date']
+
+        print(booking_date)
+
         conn = sqlite3.connect('schedule.db')
         cursor = conn.cursor()
         table_name = 'schedule'
 
-        query = f"SELECT * FROM {table_name}"
-        cursor.execute(query)
+        query = f"SELECT * FROM {table_name} WHERE booking_date=?"
+        cursor.execute(query,(booking_date,))
         res = cursor.fetchall()
 
         print(res)
